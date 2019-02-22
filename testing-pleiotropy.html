@@ -6,7 +6,7 @@
     <meta name="author" content="Frederick Boehm" />
     <meta name="date" content="2019-03-06" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -109,7 +109,7 @@ class: center, middle, inverse, title-slide
 
 - Logan, et al.  (2013)  and  Recla, et al.  (2014)  genotyped and phenotyped 261 Diversity Outbred mice    
     - Identified *Hydin* as the Chromosome 8 gene affecting "hot plate latency" at 57 cM
-    - Identified Chromosome 8 QTLs for "percent time in light" at 55 cM    
+    - Identified Chromosome 8 QTL for "percent time in light" at 55 cM    
     - Motivated us to ask if *Hydin* also affects "percent time in light" 
 
 &lt;img src="figs/ccmice.png" width="300px" /&gt;
@@ -141,16 +141,18 @@ class: center, middle, inverse, title-slide
 
 # Test results
 
-- "percent time in light" &amp; "hot plate latency": p = 0.11 with 1000 bootstrap samples
+- p = 0.11 (1000 bootstrap samples)
 
 
 ---
 
 # Conclusions
 
-- Weak evidence for two separate QTL affecting the 3 phenotypes
+- Weak evidence for two separate QTL affecting the two phenotypes
     - One QTL affects "distance traveled in light" 
     - Second QTL contains *Hydin* and affects "hot plate latency"
+
+
 
 
 ---
@@ -187,30 +189,14 @@ Recla, J. M, R. F. Robledo, et al. (2014). "Precise genetic
 mapping and integrative bioinformatics in Diversity Outbred mice
 reveals Hydin as a novel pain gene". In: _Mammalian genome_
 25.5-6, pp. 211-222.
-
-
----
-
-# Application  
-
-&lt;img src="figs/lightdarkbox.jpg" width="300px" /&gt;
-
----
-
-# Profile LOD calculations
-
-1. `\(LOD_{pvl}(\text{marker1}, \text{marker2}) =\)` 
-`\(\text{log-likelihood}(\text{marker1}, \text{marker2}) - \max \text{log-likelihood}(\text{marker}, \text{marker})\)`  
-
-2. `\(\text{profile LOD}_1(\text{marker1}) = \max_{\text{marker2}}\text{LOD}_{pvl}(\text{marker1}, \text{marker2})\)`  
-
-3. `\(LOD_{p}(\text{marker}) =  \text{log-likelihood}(\text{marker}, \text{marker}) - \max \text{log-likelihood}(\text{marker}, \text{marker})\)`
     </textarea>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
-"countIncrementalSlides": false
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%",
+"ratio": "4:3"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

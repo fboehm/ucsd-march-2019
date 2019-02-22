@@ -1,7 +1,7 @@
 
 all: testing-pleiotropy.pdf
 
-testing-pleiotropy.html: testing-pleiotropy.Rmd R/hs_fig.R 
+testing-pleiotropy.html: testing-pleiotropy.Rmd R/hs_fig.R slides.css
 	R -e "rmarkdown::render('testing-pleiotropy.Rmd')"
 
 testing-pleiotropy.pdf: testing-pleiotropy.html

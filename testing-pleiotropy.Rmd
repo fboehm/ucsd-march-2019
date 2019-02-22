@@ -10,6 +10,10 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      slideNumberFormat: '%current%'
+      ratio: "4:3"
+    css: [default, 'slides.css']
+    chakra: libs/remark-latest.min.js
 ---
 
 ```{r setup, include=FALSE}
@@ -100,8 +104,8 @@ tibble(c1, c2, foo = as.factor(foo)) %>%
                            s_shape = 0, spread = 0.01, expand = 0.05
                            ) + 
   geom_point(aes(x = c1, y = c2, color = foo)) + 
-  xlim(c(0, 6)) + ylim(c(0, 6)) + xlab("marker1 position") + 
-  ylab("marker2 position") + 
+  xlim(c(0, 6)) + ylim(c(0, 6)) + xlab("trait1 position") + 
+  ylab("trait2 position") + 
   theme(legend.position = "none")
 
 ```
@@ -197,7 +201,7 @@ include_graphics("figs/profile.svg", auto_pdf = FALSE)
 
 # Test results
 
-- "percent time in light" & "hot plate latency": p = 0.11 (1000 bootstrap samples)
+- p = 0.11 (1000 bootstrap samples)
 
 
 ---
@@ -207,11 +211,6 @@ include_graphics("figs/profile.svg", auto_pdf = FALSE)
 - Weak evidence for two separate QTL affecting the two phenotypes
     - One QTL affects "distance traveled in light" 
     - Second QTL contains *Hydin* and affects "hot plate latency"
-
-
----
-
-# 
 
 
 
