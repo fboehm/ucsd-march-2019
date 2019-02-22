@@ -1,0 +1,245 @@
+---
+title: "Testing pleiotropy vs. separate QTL in multiparental populations"
+author: "Frederick Boehm"
+date: "March 6, 2019"
+bibliography: research.bib
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(knitr)
+ratio <- "4:3"
+fig_height <- ifelse(ratio=='4:3', 10, 7.5)
+fig_width <- 15
+curves_height <- ifelse(ratio=='4:3', 580, 540)
+curves_width <- ifelse(ratio=='4:3', 800, 1080)
+knitr::opts_chunk$set(#dev="svg", 
+                      echo=FALSE, 
+                      #results="hide",
+                      #fig.height=fig_height,
+                      #fig.width=fig_width,
+                      warning=FALSE, message=FALSE)
+xaringan::summon_remark() # download latest version, locally
+```
+
+
+```{r, load_refs, echo=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE, 
+           bib.style = "authoryear", 
+           cite.style = 'authoryear', 
+           style = "markdown",
+           hyperlink = FALSE, 
+           dashed = FALSE, 
+           longnamesfirst = FALSE,
+           max.names = 2,
+           bibpunct = c(" (", ") ", ",", ",", " and ", " "))
+myBib <- ReadBib("./research.bib", check = FALSE)
+```
+
+# Introduction
+
+- Experimentalists can now measure tens of thousands of phenotypes with RNA sequencing and mass spectrometry
+
+- Multiparental populations enable high-resolution QTL mapping
+
+- Together, high-dimensional phenotypes and multiparental populations can inform complex trait genetics
+
+- New analysis tools, such as our test of pleiotropy vs. separate QTL for multiparental populations, are needed 
+
+---
+
+# Multiparental populations
+
+```{r, echo = FALSE, out.width = "700px", fig.height=fig_height, fig.width = fig_width}
+source("R/hs_fig.R")
+# https://github.com/kbroman/Talk_JAX2018/blob/master/R/hs_fig.R
+```
+
+
+---
+
+# `r Citet(myBib, "jiang1995multiple")` test
+
+- Pleiotropy test for two-parent crosses
+    - Applies to two traits that map to a single genomic region 
+    - Pleiotropy is the null hypothesis 
+    - Two separate QTL is the alternative hypothesis 
+    - Perform a two-dimensional QTL scan 
+    - Calculate likelihood ratio test statistic
+
+---
+
+# `r Citet(myBib, "jiang1995multiple")` test
+
+```{r}
+library(tidyverse)
+library(ggalt) #contains geom_encircle
+```
+
+```{r}
+# two-dimensional grid for pleiotropy testing
+c1 <- c(rep(1:5, each = 5), 1:5)
+c2 <- c(rep(1:5, times = 5), 1:5)
+foo <- c(rep(2, 25), rep(1, 5))
+
+tibble(c1, c2, foo = as.factor(foo)) %>%
+  ggplot() + geom_encircle(aes(x = c1, 
+                               y = c2, 
+                               color = foo, 
+                               #fill = foo, 
+                               #alpha = 0.1
+                               ), 
+                           s_shape = 0, spread = 0.01, expand = 0.05
+                           ) + 
+  geom_point(aes(x = c1, y = c2, color = foo)) + 
+  xlim(c(0, 6)) + ylim(c(0, 6)) + xlab("marker1 position") + 
+  ylab("marker2 position") + 
+  theme(legend.position = "none")
+
+```
+
+
+
+---
+
+# Challenges in multiparental populations
+
+1. Complex patterns of relatedness    
+1. Multiple founder lines (vs. exactly two founder lines in `r Citet(myBib, "jiang1995multiple")`)  
+1. Determining statistical significance  
+
+
+---
+
+# Solutions to challenges
+
+1. Multivariate random effects to account for relatedness    
+1. Fixed effect for each founder allele    
+1. Parametric bootstrap to assess statistical significance
+
+
+---
+
+# Test procedure
+
+- Fit the model: $$Y = XB + G + E$$ for each ordered pair of markers
+    - $G \sim MN(0, K, V_g)$   
+    - $E \sim MN(0, I, V_e)$    
+    - $X$ contains allele probabilities    
+    - $B$ contains allele effects    
+- Calculate likelihood for each ordered pair of markers    
+- Test statistic: $$- \log_{10} \frac{\max \text{likelihood under pleiotropy}}{\max \text{likelihood for separate QTL}}$$    
+- Parametric bootstrap to get p-value
+
+
+---
+
+# Test characteristics
+
+```{r}
+include_graphics("figs/power-curves.svg")
+```
+
+
+
+
+---
+
+# Application
+
+- `r Citet(myBib, c("logan2013high", "recla2014precise"), .opts = list(max.names = 1))` genotyped and phenotyped 261 Diversity Outbred mice    
+    - Identified *Hydin* as the Chromosome 8 gene affecting "hot plate latency" at 57 cM
+    - Identified Chromosome 8 QTL for "percent time in light" at 55 cM    
+    - Motivated us to ask if *Hydin* also affects "percent time in light" 
+
+```{r, echo = FALSE, out.width = "300px"}
+include_graphics("figs/ccmice.png")
+```
+
+
+---
+
+# QTL scan results
+
+```{r, out.height = "500px"}
+include_graphics("figs/genomewide_lods_10-22.svg")
+```
+
+---
+
+# Allele effects plots  
+
+
+```{r, echo = FALSE, out.width = "500px"}
+include_graphics("figs/coefs.svg")
+```
+
+
+
+---
+
+# Profile LOD plot
+
+```{r, echo = FALSE}
+include_graphics("figs/profile.svg", auto_pdf = FALSE)
+```
+
+
+---
+
+# Test results
+
+- "percent time in light" & "hot plate latency": p = 0.11 (1000 bootstrap samples)
+
+
+---
+
+# Conclusions
+
+- Weak evidence for two separate QTL affecting the two phenotypes
+    - One QTL affects "distance traveled in light" 
+    - Second QTL contains *Hydin* and affects "hot plate latency"
+
+
+---
+
+# 
+
+
+
+
+---
+
+# Future directions
+
+
+
+
+---
+
+# Contact information
+
+- frederick.boehm@gmail.com     
+- https://fboehm.us/     
+- qtl2pleio R package: https://github.com/fboehm/qtl2pleio     
+- Manuscript pre-print: https://www.biorxiv.org/content/10.1101/550939v1   
+
+
+
+---
+
+# References
+
+```{r, 'refs', results='asis', echo=FALSE}
+PrintBibliography(myBib)
+```
+
+

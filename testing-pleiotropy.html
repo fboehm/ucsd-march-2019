@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testing pleiotropy vs. separate QTL in multiparental populations</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Frederick Boehm" />
+    <meta name="date" content="2019-03-06" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Testing pleiotropy vs. separate QTL in multiparental populations
+### Frederick Boehm
+### March 6, 2019
+
+---
+
+
+
+
+
+
+
+# Introduction
+
+- Experimentalists can now measure tens of thousands of phenotypes with RNA sequencing and mass spectrometry
+
+- Multiparental populations enable high-resolution QTL mapping
+
+- Together, high-dimensional phenotypes and multiparental populations can inform complex trait genetics
+
+- New analysis tools, such as our test of pleiotropy vs. separate QTL for multiparental populations, are needed 
+
+---
+
+# Multiparental populations
+
+&lt;img src="testing-pleiotropy_files/figure-html/unnamed-chunk-1-1.png" width="700px" /&gt;
+
+
+---
+
+# Jiang and Zeng  (1995)  test
+
+- Pleiotropy test for two-parent crosses
+    - Applies to two traits that map to a single genomic region 
+    - Pleiotropy is the null hypothesis 
+    - Two separate QTL is the alternative hypothesis 
+    - Perform a two-dimensional QTL scan 
+    - Calculate likelihood ratio test statistic
+
+---
+
+# Jiang and Zeng  (1995)  test
+
+
+
+![](testing-pleiotropy_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+
+
+---
+
+# Challenges in multiparental populations
+
+1. Complex patterns of relatedness    
+1. Multiple founder lines (vs. exactly two founder lines in Jiang and Zeng  (1995) )  
+1. Determining statistical significance  
+
+
+---
+
+# Solutions to challenges
+
+1. Multivariate random effects to account for relatedness    
+1. Fixed effect for each founder allele    
+1. Parametric bootstrap to assess statistical significance
+
+
+---
+
+# Test procedure
+
+- Fit the model: `$$Y = XB + G + E$$` for each ordered pair of markers
+    - `\(G \sim MN(0, K, V_g)\)`   
+    - `\(E \sim MN(0, I, V_e)\)`    
+    - `\(X\)` contains allele probabilities    
+    - `\(B\)` contains allele effects    
+- Calculate likelihood for each ordered pair of markers    
+- Test statistic: `$$- \log_{10} \frac{\max \text{likelihood under pleiotropy}}{\max \text{likelihood for separate QTL}}$$`    
+- Parametric bootstrap to get p-value
+
+
+---
+
+# Test characteristics
+
+![](figs/power-curves.svg)&lt;!-- --&gt;
+
+
+
+
+---
+
+# Application
+
+- Logan, et al.  (2013)  and  Recla, et al.  (2014)  genotyped and phenotyped 261 Diversity Outbred mice    
+    - Identified *Hydin* as the Chromosome 8 gene affecting "hot plate latency" at 57 cM
+    - Identified Chromosome 8 QTLs for "percent time in light" at 55 cM    
+    - Motivated us to ask if *Hydin* also affects "percent time in light" 
+
+&lt;img src="figs/ccmice.png" width="300px" /&gt;
+
+
+---
+
+# QTL scan results
+
+&lt;img src="figs/genomewide_lods_10-22.svg" height="500px" /&gt;
+
+---
+
+# Allele effects plots  
+
+
+&lt;img src="figs/coefs.svg" width="500px" /&gt;
+
+
+
+---
+
+# Profile LOD plot
+
+![](figs/profile.svg)&lt;!-- --&gt;
+
+
+---
+
+# Test results
+
+- "percent time in light" &amp; "hot plate latency": p = 0.11 with 1000 bootstrap samples
+
+
+---
+
+# Conclusions
+
+- Weak evidence for two separate QTL affecting the 3 phenotypes
+    - One QTL affects "distance traveled in light" 
+    - Second QTL contains *Hydin* and affects "hot plate latency"
+
+
+---
+
+# Future directions
+
+
+
+
+---
+
+# Contact information
+
+- frederick.boehm@gmail.com     
+- https://fboehm.us/     
+- qtl2pleio R package: https://github.com/fboehm/qtl2pleio     
+- Manuscript pre-print: https://www.biorxiv.org/content/10.1101/550939v1   
+
+
+
+---
+
+# References
+
+Jiang, C. and Z. Zeng (1995). "Multiple trait analysis of genetic
+mapping for quantitative trait loci." In: _Genetics_ 140.3, pp.
+1111-1127.
+
+Logan, R. W, R. F. Robledo, et al. (2013). "High-precision genetic
+mapping of behavioral traits in the diversity outbred mouse
+population". In: _Genes, Brain and Behavior_ 12.4, pp. 424-437.
+
+Recla, J. M, R. F. Robledo, et al. (2014). "Precise genetic
+mapping and integrative bioinformatics in Diversity Outbred mice
+reveals Hydin as a novel pain gene". In: _Mammalian genome_
+25.5-6, pp. 211-222.
+
+
+---
+
+# Application  
+
+&lt;img src="figs/lightdarkbox.jpg" width="300px" /&gt;
+
+---
+
+# Profile LOD calculations
+
+1. `\(LOD_{pvl}(\text{marker1}, \text{marker2}) =\)` 
+`\(\text{log-likelihood}(\text{marker1}, \text{marker2}) - \max \text{log-likelihood}(\text{marker}, \text{marker})\)`  
+
+2. `\(\text{profile LOD}_1(\text{marker1}) = \max_{\text{marker2}}\text{LOD}_{pvl}(\text{marker1}, \text{marker2})\)`  
+
+3. `\(LOD_{p}(\text{marker}) =  \text{log-likelihood}(\text{marker}, \text{marker}) - \max \text{log-likelihood}(\text{marker}, \text{marker})\)`
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
