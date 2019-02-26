@@ -13,7 +13,7 @@ output:
       countIncrementalSlides: false
       slideNumberFormat: '%current%'
       ratio: "4:3"
-    css: [default, 'slides.css']
+    css: [default, 'slides.css', xaringan-themer.css]
     chakra: libs/remark-latest.min.js
 ---
 
@@ -49,29 +49,34 @@ BibOptions(check.entries = FALSE,
 myBib <- ReadBib("./research.bib", check = FALSE)
 ```
 
-# Introduction
 
-- Experimentalists can now measure tens of thousands of traits with RNA sequencing and mass spectrometry
-
-- Multiparental populations enable high-resolution QTL mapping
-
-- Together, high-dimensional traits and multiparental populations can inform complex trait genetics
-
-- New analysis tools, such as our test of pleiotropy for multiparental populations, are needed 
-
----
-
-# Multiparental populations
-
-```{r, echo = FALSE, out.width = "700px", fig.height=fig_height, fig.width = fig_width}
-source("R/hs_fig.R")
-# https://github.com/kbroman/Talk_JAX2018/blob/master/R/hs_fig.R
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+#mono_light(
+#  base_color = "#1c5253",
+#  header_font_google = google_font("Josefin Sans"),
+#  text_font_google   = google_font("Montserrat", "300", #"300i"),
+#  code_font_google   = google_font("Droid Mono")
+#)
+solarized_light()
 ```
 
 
+
+# Introduction
+
+- Tens of thousands of traits with RNA sequencing and mass spectrometry can be measured
+
+- Multiparental populations offer high-resolution QTL mapping
+
+- Together, high-dimensional traits and multiparental populations can inform complex trait genetics
+
+- New analysis tools, such as a pleiotropy test for multiparental populations, are needed 
+
+
 ---
 
-# `r Citet(myBib, "jiang1995multiple")` pleiotropy test
+# `r Citet(myBib, "jiang1995multiple")` test
 
 - Two-parent crosses    
 
@@ -85,7 +90,7 @@ source("R/hs_fig.R")
 
 ---
 
-# `r Citet(myBib, "jiang1995multiple")` pleiotropy test
+# `r Citet(myBib, "jiang1995multiple")` test
 
 
 - Perform a two-dimensional QTL scan     
@@ -98,7 +103,7 @@ source("R/hs_fig.R")
 
 ---
 
-# `r Citet(myBib, "jiang1995multiple")` pleiotropy test
+# `r Citet(myBib, "jiang1995multiple")` test
 
 ```{r}
 library(tidyverse)
@@ -126,6 +131,17 @@ tibble(c1, c2, foo = as.factor(foo)) %>%
   theme(legend.position = "none")
 
 ```
+
+---
+
+# Multiparental populations
+
+```{r, echo = FALSE, out.width = "700px", fig.height=fig_height, fig.width = fig_width}
+source("R/hs_fig.R")
+# https://github.com/kbroman/Talk_JAX2018/blob/master/R/hs_fig.R
+```
+
+
 
 
 
@@ -171,10 +187,6 @@ tibble(c1, c2, foo = as.factor(foo)) %>%
     
     - $E$: Random errors
     
-    - $X$ contains allele probabilities    
-    
-    - $B$ contains allele effects    
-    
 - Calculate likelihood for each ordered pair of markers    
 
 ---
@@ -200,9 +212,7 @@ include_graphics("figs/power-curves.svg")
 # Diversity Outbred Mice
 
 - Multiparental population arising from 8 inbred lines    
-  
-  - 3 wild-derived founder lines    
-  
+
   - Complementary to Collaborative Cross  
   
 
@@ -218,13 +228,13 @@ include_graphics("figs/ccmice.png")
 
 # Application
 
-- `r Citet(myBib, c("logan2013high", "recla2014precise"), .opts = list(max.names = 1))` genotyped and phenotyped 261 Diversity Outbred mice    
+- `r Citet(myBib, c("logan2013high", "recla2014precise"), .opts = list(max.names = 1))` studied 261 Diversity Outbred mice    
 
-    - Identified *Hydin* as the Chromosome 8 gene affecting "hot plate latency" at 57 cM    
+    - Chromosome 8 QTL affecting "hot plate latency" at 57 cM: *Hydin*    
     
-    - Identified Chromosome 8 QTL for "percent time in light" at 55 cM    
+    - Chromosome 8 QTL for "percent time in light" at 55 cM    
     
-    - Motivated us to ask if the QTL containing *Hydin* also affects "percent time in light" 
+    - Does *Hydin* affect "percent time in light"?
 
 
 
