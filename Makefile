@@ -5,5 +5,5 @@ testing-pleiotropy.html: testing-pleiotropy.Rmd R/hs_fig.R slides.css
 	R -e "rmarkdown::render('testing-pleiotropy.Rmd')"
 
 testing-pleiotropy.pdf: testing-pleiotropy.html
-	R -e "file <- paste0('file://', normalizePath('testing-pleiotropy.html'));webshot::webshot(file, '$@')"
+	R -e "file <- paste0('file://', normalizePath('testing-pleiotropy.html'));webshot::webshot(file, '$@', delay = 3)"
 
