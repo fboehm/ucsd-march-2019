@@ -18,10 +18,9 @@ h1, h2 {
     font-size: 40px;
 }
 .remark-slide-content p, ul, ol { 
-    font-size: 24pt; 
+    font-size: 32px; 
     margin-left: 1em;
 }
-
 
 
 p {
@@ -45,7 +44,7 @@ a, a > code {
     background-color: #ffff88;
 }
 ol, ul {
-    font-size: 28px;
+    font-size: 32px;
 }
 li li {
     font-size: 24px;
@@ -98,3 +97,9 @@ li li {
 .compressed_bullets ul li p { /* reduce space between bullets */
     margin-bottom: -18px;
 }
+
+.soln {
+    color: red; 
+    font-style: italic;
+}
+.red { color: red; }

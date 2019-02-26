@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Testing pleiotropy vs. separate QTL in multiparental populations</title>
+    <title>Testing pleiotropy in multiparental populations</title>
     <meta charset="utf-8">
     <meta name="author" content="Frederick Boehm" />
     <meta name="date" content="2019-03-06" />
@@ -12,7 +12,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Testing pleiotropy vs. separate QTL in multiparental populations
+# Testing pleiotropy in multiparental populations
 ### Frederick Boehm
 ### March 6, 2019
 
@@ -26,13 +26,13 @@ class: center, middle, inverse, title-slide
 
 # Introduction
 
-- Experimentalists can now measure tens of thousands of phenotypes with RNA sequencing and mass spectrometry
+- Experimentalists can now measure tens of thousands of traits with RNA sequencing and mass spectrometry
 
 - Multiparental populations enable high-resolution QTL mapping
 
-- Together, high-dimensional phenotypes and multiparental populations can inform complex trait genetics
+- Together, high-dimensional traits and multiparental populations can inform complex trait genetics
 
-- New analysis tools, such as our test of pleiotropy vs. separate QTL for multiparental populations, are needed 
+- New analysis tools, such as our test of pleiotropy for multiparental populations, are needed 
 
 ---
 
@@ -43,18 +43,34 @@ class: center, middle, inverse, title-slide
 
 ---
 
-# Jiang and Zeng  (1995)  test
+# Jiang and Zeng  (1995)  pleiotropy test
 
-- Pleiotropy test for two-parent crosses
-    - Applies to two traits that map to a single genomic region 
-    - Pleiotropy is the null hypothesis 
-    - Two separate QTL is the alternative hypothesis 
-    - Perform a two-dimensional QTL scan 
-    - Calculate likelihood ratio test statistic
+- Two-parent crosses    
+
+- Applies to two traits that co-map     
+
+- `\(H_0\)`: Pleiotropy    
+
+- `\(H_A\)`: Two separate QTL    
+
+
 
 ---
 
-# Jiang and Zeng  (1995)  test
+# Jiang and Zeng  (1995)  pleiotropy test
+
+
+- Perform a two-dimensional QTL scan     
+
+- `\(Y = XB + E\)`     
+
+- Calculate likelihood ratio test statistic     
+
+
+
+---
+
+# Jiang and Zeng  (1995)  pleiotropy test
 
 
 
@@ -66,32 +82,57 @@ class: center, middle, inverse, title-slide
 
 # Challenges in multiparental populations
 
-1. Complex patterns of relatedness    
-1. Multiple founder lines (vs. exactly two founder lines in Jiang and Zeng  (1995) )  
-1. Determining statistical significance  
+- Complex patterns of relatedness    
+
+- Multiple founder lines
+
+- Determining statistical significance    
 
 
 ---
 
 # Solutions to challenges
 
-1. Multivariate random effects to account for relatedness    
-1. Fixed effect for each founder allele    
-1. Parametric bootstrap to assess statistical significance
+- Complex patterns of relatedness    
+
+.soln[Multivariate random effects]
+
+- Multiple founder lines
+
+.soln[Fixed effect for each founder allele]    
+
+- Determining statistical significance    
+
+.soln[Parametric bootstrap]    
+
+
+
+
 
 
 ---
 
 # Test procedure
 
-- Fit the model: `$$Y = XB + G + E$$` for each ordered pair of markers
-    - `\(G \sim MN(0, K, V_g)\)`   
-    - `\(E \sim MN(0, I, V_e)\)`    
+- Fit the model: `$$vec(Y) = Xvec(B) + vec(G) + vec(E)$$` for each ordered pair of markers
+
+    - `\(G\)`: Polygenic random effects   
+    
+    - `\(E\)`: Random errors
+    
     - `\(X\)` contains allele probabilities    
+    
     - `\(B\)` contains allele effects    
+    
 - Calculate likelihood for each ordered pair of markers    
+
+---
+
+# Test procedure
+
 - Test statistic: `$$- \log_{10} \frac{\max \text{likelihood under pleiotropy}}{\max \text{likelihood for separate QTL}}$$`    
-- Parametric bootstrap to get p-value
+
+- Parametric bootstrap to get p-value    
 
 
 ---
@@ -101,6 +142,21 @@ class: center, middle, inverse, title-slide
 ![](figs/power-curves.svg)&lt;!-- --&gt;
 
 
+---
+
+# Diversity Outbred Mice
+
+- Multiparental population arising from 8 inbred lines    
+  
+  - 3 wild-derived founder lines    
+  
+  - Complementary to Collaborative Cross  
+  
+
+&lt;img src="figs/ccmice.png" width="300px" /&gt;
+
+
+
 
 
 ---
@@ -108,11 +164,13 @@ class: center, middle, inverse, title-slide
 # Application
 
 - Logan, et al.  (2013)  and  Recla, et al.  (2014)  genotyped and phenotyped 261 Diversity Outbred mice    
-    - Identified *Hydin* as the Chromosome 8 gene affecting "hot plate latency" at 57 cM
-    - Identified Chromosome 8 QTL for "percent time in light" at 55 cM    
-    - Motivated us to ask if *Hydin* also affects "percent time in light" 
 
-&lt;img src="figs/ccmice.png" width="300px" /&gt;
+    - Identified *Hydin* as the Chromosome 8 gene affecting "hot plate latency" at 57 cM    
+    
+    - Identified Chromosome 8 QTL for "percent time in light" at 55 cM    
+    
+    - Motivated us to ask if the QTL containing *Hydin* also affects "percent time in light" 
+
 
 
 ---
@@ -148,11 +206,90 @@ class: center, middle, inverse, title-slide
 
 # Conclusions
 
-- Weak evidence for two separate QTL affecting the two phenotypes
-    - One QTL affects "distance traveled in light" 
+- Weak evidence for two separate QTL affecting the two phenotypes    
+
+    - One QTL affects "distance traveled in light"    
+    
     - Second QTL contains *Hydin* and affects "hot plate latency"
 
 
+---
+
+class: center, middle, inverse, title-slide
+
+# qtl2pleio R package development
+
+
+---
+
+# Design elements
+
+- Written mostly in R    
+  
+  - Some calculations in C++, via Rcpp package  
+  
+  - C++ Eigen library and RcppEigen for matrix algebra  
+  
+  - User interacts only with R functions  
+
+---
+
+# Design elements
+
+- Tutorial vignettes demonstrate functionality  
+
+- Unit tests included via `testthat` R package  
+
+- Documentation with `roxygen2` R package
+
+- Package website with `pkgdown` R package
+
+---
+
+# R packages book
+
+- Hadley Wickham's "R packages" book as a guide  
+
+&lt;img src="figs/rpackages-cover.png" width="300px" /&gt;
+
+
+
+---
+
+# Open-source R package
+
+- Hosted on github  
+
+- Install via `devtools` R package  
+
+- `git` commits publicly visible  
+
+- Travis CI for testing after every commit  
+
+
+---
+
+# Binder integration
+
+- Enhances reproducibility  
+
+- Uses Docker images 
+
+- Downloads R packages for a specified date (or `git` commit on Github)  
+
+
+---
+
+# Binder integration: 2 new files
+
+- install.R
+
+    - contains code to install R packages
+
+- runtime.txt
+
+    - contains one line of text to indicate date for CRAN packages
+    
 
 
 ---
@@ -166,9 +303,12 @@ class: center, middle, inverse, title-slide
 
 # Contact information
 
-- frederick.boehm@gmail.com     
+- frederick.boehm@gmail.com   
+
 - https://fboehm.us/     
-- qtl2pleio R package: https://github.com/fboehm/qtl2pleio     
+
+- qtl2pleio R package: https://github.com/fboehm/qtl2pleio
+
 - Manuscript pre-print: https://www.biorxiv.org/content/10.1101/550939v1   
 
 
@@ -231,7 +371,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);
