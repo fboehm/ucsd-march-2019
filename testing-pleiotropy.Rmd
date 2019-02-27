@@ -65,13 +65,16 @@ solarized_light()
 
 # Introduction
 
-- Tens of thousands of traits with RNA sequencing and mass spectrometry can be measured
+- 10,000+ traits with RNA sequencing and mass spectrometry 
 
 - Multiparental populations offer high-resolution QTL mapping
 
-- Together, high-dimensional traits and multiparental populations can inform complex trait genetics
-
 - New analysis tools, such as a pleiotropy test for multiparental populations, are needed 
+
+
+???
+
+- Together, high-dimensional traits and multiparental populations can inform complex trait genetics
 
 
 ---
@@ -184,13 +187,17 @@ source("R/hs_fig.R")
 
 # Test procedure
 
-- Fit the model: $$vec(Y) = Xvec(B) + vec(G) + vec(E)$$ for each ordered pair of markers
+- Model: $$vec(Y) = Xvec(B) + vec(G) + vec(E)$$ 
+    
+- Calculate likelihoods
 
-    - $G$: Polygenic random effects   
+???
+
+- $G$: Polygenic random effects   
     
-    - $E$: Random errors
+- $E$: Random errors
     
-- Calculate likelihood for each ordered pair of markers    
+
 
 ---
 
@@ -216,13 +223,15 @@ include_graphics("figs/power-curves.svg")
 
 - Multiparental population arising from 8 inbred lines    
 
-  - Complementary to Collaborative Cross  
   
 
 ```{r, echo = FALSE, out.width = "300px"}
 include_graphics("figs/ccmice.png")
 ```
 
+???
+
+  - Complementary to Collaborative Cross  
 
 
 
@@ -233,13 +242,15 @@ include_graphics("figs/ccmice.png")
 
 - `r Citet(myBib, c("logan2013high", "recla2014precise"), .opts = list(max.names = 1))` studied 261 Diversity Outbred mice    
 
-    - Chromosome 8 QTL affecting "hot plate latency" at 57 cM: *Hydin*    
-    
-    - Chromosome 8 QTL for "percent time in light" at 55 cM    
-    
-    - Does *Hydin* affect "percent time in light"?
+- Two traits map to Chr 8:
 
+    - "hot plate latency" (57 cM)    
 
+    - "percent time in light" (55 cM)
+
+???
+
+Do they share a single QTL? 
 
 ---
 
@@ -280,11 +291,11 @@ include_graphics("figs/profile.svg", auto_pdf = FALSE)
 
 # Conclusions
 
-- Weak evidence for two separate QTL affecting the two phenotypes    
+- Weak evidence for two separate QTL
 
     - One QTL affects "distance traveled in light"    
     
-    - Second QTL contains *Hydin* and affects "hot plate latency"
+    - Second QTL affects "hot plate latency"
 
 
 ---
@@ -383,9 +394,9 @@ include_graphics("figs/rpackages-cover.png")
 
 - https://fboehm.us/     
 
-- [qtl2pleio R package](https://github.com/fboehm/qtl2pleio)
+- qtl2pleio R package: [https://github.com/fboehm/qtl2pleio](https://github.com/fboehm/qtl2pleio)
 
-- [Manuscript pre-print](https://www.biorxiv.org/content/10.1101/550939v1)
+- Biorxiv pre-print: [http://bit.ly/boehm-biorxiv](http://bit.ly/boehm-biorxiv)
 
 
 
