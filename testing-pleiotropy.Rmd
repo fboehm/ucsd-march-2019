@@ -327,7 +327,8 @@ class: center, middle, inverse, title-slide
 
 - LOD score with and without conditioning on candidate intermediate
 
-- LOD difference statistic
+- LOD difference statistic   
+
 
 
 
