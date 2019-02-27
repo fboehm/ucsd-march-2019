@@ -63,6 +63,7 @@ solarized_light()
 
 
 
+
 # Introduction
 
 - 10,000+ traits with RNA sequencing and mass spectrometry 
@@ -164,7 +165,7 @@ source("R/hs_fig.R")
 
 ---
 
-# Solutions to challenges
+# Challenges in multiparental populations
 
 - Complex patterns of relatedness    
 
@@ -203,7 +204,7 @@ source("R/hs_fig.R")
 
 # Test procedure
 
-- Test statistic: $$- \log_{10} \frac{\max \text{likelihood under pleiotropy}}{\max \text{likelihood for separate QTL}}$$    
+- Test statistic: $$- \log \frac{\max (\text{likelihood under pleiotropy})}{\max (\text{likelihood for separate QTL})}$$    
 
 - Parametric bootstrap to get p-value    
 
