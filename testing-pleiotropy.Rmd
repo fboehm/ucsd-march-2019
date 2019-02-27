@@ -99,6 +99,9 @@ solarized_light()
 
 - Calculate likelihood ratio test statistic     
 
+???
+
+- 2d scan involves all ordered pairs of markers
 
 
 ---
@@ -380,9 +383,9 @@ include_graphics("figs/rpackages-cover.png")
 
 - https://fboehm.us/     
 
-- qtl2pleio R package: https://github.com/fboehm/qtl2pleio
+- [qtl2pleio R package](https://github.com/fboehm/qtl2pleio)
 
-- Manuscript pre-print: https://www.biorxiv.org/content/10.1101/550939v1   
+- [Manuscript pre-print](https://www.biorxiv.org/content/10.1101/550939v1)
 
 
 
