@@ -303,6 +303,24 @@ include_graphics("figs/profile.svg", auto_pdf = FALSE)
 
 class: center, middle, inverse, title-slide
 
+# Mediation analysis and pleiotropy testing
+
+
+---
+
+# Mediation analysis
+
+`r Citet(myBib, "chick2016defining", .opts = list(max.names = 1))` 
+
+
+
+
+
+
+---
+
+class: center, middle, inverse, title-slide
+
 # qtl2pleio R package development
 
 
@@ -405,8 +423,15 @@ include_graphics("figs/rpackages-cover.png")
 
 # References
 
-```{r, 'refs', results='asis', echo=FALSE}
-PrintBibliography(myBib)
+```{r, results = 'asis'}
+PrintBibliography(myBib, .opts = list(style = "markdown"), start = 1, end = 3)
 ```
 
+---
+
+# References
+
+```{r, results = 'asis'}
+PrintBibliography(myBib, .opts = list(style = "markdown"), start = 4, end = 6)
+```
 
