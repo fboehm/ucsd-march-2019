@@ -310,10 +310,24 @@ class: center, middle, inverse, title-slide
 
 # Mediation analysis
 
-`r Citet(myBib, "chick2016defining", .opts = list(max.names = 1))` 
+- Is one molecule an intermediate in a causal pathway?  
+
+---
+
+# Mediation analysis example 
+
+- QTL near DHTKD1 gene affects DHTKD1 RNA levels and DHTKD1 protein levels
+
+- Is DHTKD1 an intermediate between QTL and DHTKD1 protein levels? 
 
 
+---
 
+# Mediation analysis methods
+
+- LOD score with and without conditioning on candidate intermediate
+
+- LOD difference statistic
 
 
 
