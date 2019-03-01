@@ -77,6 +77,14 @@ solarized_light()
 
 - Together, high-dimensional traits and multiparental populations can inform complex trait genetics
 
+---
+
+# Pleiotropy
+
+```{r, agouti, out.width=600}
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/4/4d/Agouti_Mice.jpg")
+```
+
 
 ---
 
@@ -397,9 +405,26 @@ include_graphics("figs/12local-facet_grid-no-strip-3-by-4.svg")
 
 # Dissecting an eQTL hotspot
 
-```{r, out.width=500}
+```{r, out.width=650}
 include_graphics("figs/nonlocal-4-panels-no-strip-wide.svg")
 ```
+
+---
+
+# Conclusions
+
+- Pleiotropy test & mediation analysis ask distinct questions
+
+- Both are useful when dissecting eQTL hotspots
+
+???
+
+- Pleiotropy test informs about the number of QTL in a hotspot, even when there is no clear mediator   
+
+
+
+
+
 
 
 ---
