@@ -316,10 +316,14 @@ class: center, middle, inverse, title-slide
 
 # Mediation analysis example 
 
-- QTL near DHTKD1 gene affects DHTKD1 RNA levels and DHTKD1 protein levels
+- QTL near Dhtkd1 gene affects Dhtkd1 RNA levels and DHTKD1 protein levels
 
 - Is DHTKD1 an intermediate between QTL and DHTKD1 protein levels? 
 
+
+```{r}
+include_graphics("figs/central_dogma-Dhtkd1.svg")
+```
 
 ---
 
@@ -327,7 +331,50 @@ class: center, middle, inverse, title-slide
 
 - LOD score with and without conditioning on candidate intermediate
 
-- LOD difference statistic   
+- LOD difference   
+
+- LOD difference proportion    
+
+
+---
+
+# Dissecting an eQTL hotspot
+
+- `r Citet(myBib, "keller2018genetic", .opts = list(max.names = 1))` identified 147 nonlocal traits that map to Chr 2 (163.5 Mb to 167.5 Mb)  
+ 
+- *Hnf4a* expression levels mediate 88 of 147 traits  
+
+- Do other local genes act as intermediates? 
+
+
+???
+
+- 378 DO mice  
+
+
+
+---
+
+# Dissecting an eQTL hotspot
+
+```{r, out.width=500}
+include_graphics("figs/lod-diff-prop-v-lrt.svg")
+```
+
+---
+
+# Dissecting an eQTL hotspot
+
+
+```{r}
+include_graphics("figs/12local-facet_grid-no-strip-3-by-4.svg")
+```
+
+
+
+
+
+
 
 
 
