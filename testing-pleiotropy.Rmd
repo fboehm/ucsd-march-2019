@@ -79,11 +79,14 @@ solarized_light()
 
 ---
 
-# Pleiotropy
+# Pleiotropy & *Agouti* gene
 
-```{r, agouti, out.width=600}
+```{r, agouti, out.width=500, eval = TRUE}
 include_graphics("https://upload.wikimedia.org/wikipedia/commons/4/4d/Agouti_Mice.jpg")
 ```
+
+.small[https://upload.wikimedia.org/wikipedia/commons/4/4d/Agouti_Mice.jpg]
+
 
 
 ---
