@@ -351,6 +351,17 @@ include_graphics("figs/central_dogma-Dhtkd1.svg")
 
 - 378 DO mice  
 
+---
+
+# Dissecting an eQTL hotspot
+
+- 13 local gene expression traits as candidate mediators
+
+- 147 nonlocal gene expression traits
+
+- Pair one local trait with one nonlocal trait
+
+
 
 
 ---
@@ -361,6 +372,18 @@ include_graphics("figs/central_dogma-Dhtkd1.svg")
 include_graphics("figs/lod-diff-prop-v-lrt.svg")
 ```
 
+
+---
+
+# Dissecting an eQTL hotspot
+
+```{r, out.width=500}
+include_graphics("figs/Hnf4a-lod-diff-prop-v-lrt.svg")
+```
+
+
+
+
 ---
 
 # Dissecting an eQTL hotspot
@@ -370,13 +393,13 @@ include_graphics("figs/lod-diff-prop-v-lrt.svg")
 include_graphics("figs/12local-facet_grid-no-strip-3-by-4.svg")
 ```
 
+---
 
+# Dissecting an eQTL hotspot
 
-
-
-
-
-
+```{r, out.width=500}
+include_graphics("figs/nonlocal-4-panels-no-strip-wide.svg")
+```
 
 
 ---
