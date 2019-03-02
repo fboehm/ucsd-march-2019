@@ -121,6 +121,11 @@ include_graphics("https://upload.wikimedia.org/wikipedia/commons/4/4d/Agouti_Mic
 
 ???
 
+- Y: 2 traits  
+- X: genotype probs for 2 markers  
+- B: founder allele effects  
+- E: random errors  
+
 - 2d scan involves all ordered pairs of markers
 
 
@@ -165,6 +170,12 @@ source("R/hs_fig.R")
 ```
 
 
+???
+
+- start with 8 inbred founder lines  
+- inbred lines are color-coded  
+- each subject represented by one chromosome pair  
+- over successive generations of outbreeding, subjects have smaller and smaller contiguous regions from a single inbred line  
 
 
 
@@ -225,13 +236,6 @@ source("R/hs_fig.R")
 - Parametric bootstrap to get p-value    
 
 
----
-
-# Test characteristics
-
-```{r}
-include_graphics("figs/power-curves.svg")
-```
 
 
 ---
@@ -248,6 +252,8 @@ include_graphics("figs/ccmice.png")
 
 ???
 
+
+  - Each mouse is genetically unique  
   - Complementary to Collaborative Cross  
 
 
