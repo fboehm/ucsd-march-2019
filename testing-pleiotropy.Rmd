@@ -35,7 +35,7 @@ xaringan::summon_remark() # download latest version, locally
 ```
 
 
-```{r, load_refs, echo=FALSE, cache=FALSE}
+```{r load_refs, echo=FALSE, cache=FALSE}
 library(RefManageR)
 BibOptions(check.entries = FALSE, 
            bib.style = "authoryear", 
@@ -81,7 +81,7 @@ solarized_light()
 
 # Pleiotropy & *Agouti* gene
 
-```{r, agouti, out.width=500, eval = TRUE}
+```{r agouti, out.width=500, eval = TRUE}
 include_graphics("https://upload.wikimedia.org/wikipedia/commons/4/4d/Agouti_Mice.jpg")
 ```
 
@@ -92,7 +92,8 @@ include_graphics("https://upload.wikimedia.org/wikipedia/commons/4/4d/Agouti_Mic
 - Agouti protein antagonizes $\alpha$-melanocyte-stimulating hormone  
     - prevents melanocyte production of melanin  
     - disrupts melanocortin receptor signaling in the brain  
-    
+
+- Agouti viable yellow ($A^{vy}$) mice    
 
 ---
 
@@ -115,7 +116,7 @@ include_graphics("https://upload.wikimedia.org/wikipedia/commons/4/4d/Agouti_Mic
 
 - Perform a two-dimensional QTL scan     
 
-- $Y = XB + E$     
+- $vec(Y) = Xvec(B) + vec(E)$     
 
 - Calculate likelihood ratio test statistic     
 
@@ -125,6 +126,7 @@ include_graphics("https://upload.wikimedia.org/wikipedia/commons/4/4d/Agouti_Mic
 - X: genotype probs for 2 markers  
 - B: founder allele effects  
 - E: random errors  
+- vec: stack columns
 
 - 2d scan involves all ordered pairs of markers
 
@@ -133,12 +135,12 @@ include_graphics("https://upload.wikimedia.org/wikipedia/commons/4/4d/Agouti_Mic
 
 # `r Citet(myBib, "jiang1995multiple")` test
 
-```{r}
+```{r pkgs}
 library(tidyverse)
 library(ggalt) #contains geom_encircle
 ```
 
-```{r}
+```{r encircle}
 # two-dimensional grid for pleiotropy testing
 c1 <- c(rep(1:5, each = 5), 1:5)
 c2 <- c(rep(1:5, times = 5), 1:5)
@@ -160,11 +162,37 @@ tibble(c1, c2, foo = as.factor(foo)) %>%
 
 ```
 
+???
+
+- Compare with a t-test where you test a point hypothesis as a null and the alternative is the real number line
+
+
+---
+
+# Diversity Outbred Mice
+
+- Multiparental population arising from 8 inbred lines    
+
+  
+
+```{r ccmice, echo = FALSE, out.width = "300px"}
+include_graphics("figs/ccmice.png")
+```
+
+???
+
+
+- Each mouse is genetically unique  
+- 3 wild-derived lines
+- 3 subspecies: *M. m. domesticus*, *M. m. musculus*, and *M. m. castaneus*
+
+
+
 ---
 
 # Multiparental populations
 
-```{r, echo = FALSE, out.width = "700px", fig.height=fig_height, fig.width = fig_width}
+```{r mppfig, echo = FALSE, out.width = "700px", fig.height=fig_height, fig.width = fig_width}
 source("R/hs_fig.R")
 # https://github.com/kbroman/Talk_JAX2018/blob/master/R/hs_fig.R
 ```
@@ -172,9 +200,10 @@ source("R/hs_fig.R")
 
 ???
 
+
 - start with 8 inbred founder lines  
 - inbred lines are color-coded  
-- each subject represented by one chromosome pair  
+- each subject represented by one homologous chromosome pair  
 - over successive generations of outbreeding, subjects have smaller and smaller contiguous regions from a single inbred line  
 
 
@@ -238,24 +267,6 @@ source("R/hs_fig.R")
 
 
 
----
-
-# Diversity Outbred Mice
-
-- Multiparental population arising from 8 inbred lines    
-
-  
-
-```{r, echo = FALSE, out.width = "300px"}
-include_graphics("figs/ccmice.png")
-```
-
-???
-
-
-  - Each mouse is genetically unique  
-  - Complementary to Collaborative Cross  
-
 
 
 
@@ -279,7 +290,7 @@ Do they share a single QTL?
 
 # QTL scan results
 
-```{r, out.height = "500px"}
+```{r lods, out.height = "500px"}
 include_graphics("figs/genomewide_lods_10-22.svg")
 ```
 
@@ -288,7 +299,7 @@ include_graphics("figs/genomewide_lods_10-22.svg")
 # Allele effects plots  
 
 
-```{r, echo = FALSE, out.width = "500px"}
+```{r effects, echo = FALSE, out.width = "500px"}
 include_graphics("figs/coefs.svg")
 ```
 
@@ -298,7 +309,7 @@ include_graphics("figs/coefs.svg")
 
 # Profile LOD plot
 
-```{r, echo = FALSE}
+```{r profiles, echo = FALSE}
 include_graphics("figs/profile.svg", auto_pdf = FALSE)
 ```
 
@@ -343,7 +354,7 @@ class: center, middle, inverse, title-slide
 - Is Dhtkd1 RNA an intermediate between QTL and DHTKD1 protein levels? 
 
 
-```{r}
+```{r dogma}
 include_graphics("figs/central_dogma-Dhtkd1.svg")
 ```
 
@@ -390,7 +401,7 @@ include_graphics("figs/central_dogma-Dhtkd1.svg")
 
 # Dissecting an eQTL hotspot
 
-```{r, out.width=500}
+```{r scatter, out.width=500}
 include_graphics("figs/lod-diff-prop-v-lrt.svg")
 ```
 
@@ -399,7 +410,7 @@ include_graphics("figs/lod-diff-prop-v-lrt.svg")
 
 # Dissecting an eQTL hotspot
 
-```{r, out.width=500}
+```{r scatter-hnf4a, out.width=500}
 include_graphics("figs/Hnf4a-lod-diff-prop-v-lrt.svg")
 ```
 
@@ -411,7 +422,7 @@ include_graphics("figs/Hnf4a-lod-diff-prop-v-lrt.svg")
 # Dissecting an eQTL hotspot
 
 
-```{r}
+```{r scatter-12}
 include_graphics("figs/12local-facet_grid-no-strip-3-by-4.svg")
 ```
 
@@ -419,7 +430,7 @@ include_graphics("figs/12local-facet_grid-no-strip-3-by-4.svg")
 
 # Dissecting an eQTL hotspot
 
-```{r, out.width=650}
+```{r scatter-4, out.width=650}
 include_graphics("figs/nonlocal-4-panels-no-strip-wide.svg")
 ```
 
@@ -478,7 +489,7 @@ class: center, middle, inverse, title-slide
 
 - Hadley Wickham's "R packages" book as a guide  
 
-```{r, out.width = "300px"}
+```{r hadley, out.width = "300px"}
 include_graphics("figs/rpackages-cover.png")
 ```
 
@@ -520,13 +531,6 @@ include_graphics("figs/rpackages-cover.png")
 
     - contains one line of text to indicate date for CRAN packages
     
-
-
----
-
-# Future directions
-
-
 
 
 ---

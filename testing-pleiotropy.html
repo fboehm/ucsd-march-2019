@@ -57,7 +57,8 @@ class: center, middle, inverse, title-slide
 - Agouti protein antagonizes `\(\alpha\)`-melanocyte-stimulating hormone  
     - prevents melanocyte production of melanin  
     - disrupts melanocortin receptor signaling in the brain  
-    
+
+- Agouti viable yellow ($A^{vy}$) mice    
 
 ---
 
@@ -80,7 +81,7 @@ class: center, middle, inverse, title-slide
 
 - Perform a two-dimensional QTL scan     
 
-- `\(Y = XB + E\)`     
+- `\(vec(Y) = Xvec(B) + vec(E)\)`     
 
 - Calculate likelihood ratio test statistic     
 
@@ -90,6 +91,7 @@ class: center, middle, inverse, title-slide
 - X: genotype probs for 2 markers  
 - B: founder allele effects  
 - E: random errors  
+- vec: stack columns
 
 - 2d scan involves all ordered pairs of markers
 
@@ -100,20 +102,45 @@ class: center, middle, inverse, title-slide
 
 
 
-![](testing-pleiotropy_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+![](testing-pleiotropy_files/figure-html/encircle-1.png)&lt;!-- --&gt;
+
+???
+
+- Compare with a t-test where you test a point hypothesis as a null and the alternative is the real number line
+
+
+---
+
+# Diversity Outbred Mice
+
+- Multiparental population arising from 8 inbred lines    
+
+  
+
+&lt;img src="figs/ccmice.png" width="300px" /&gt;
+
+???
+
+
+- Each mouse is genetically unique  
+- 3 wild-derived lines
+- 3 subspecies: *M. m. domesticus*, *M. m. musculus*, and *M. m. castaneus*
+
+
 
 ---
 
 # Multiparental populations
 
-&lt;img src="testing-pleiotropy_files/figure-html/unnamed-chunk-3-1.png" width="700px" /&gt;
+&lt;img src="testing-pleiotropy_files/figure-html/mppfig-1.png" width="700px" /&gt;
 
 
 ???
 
+
 - start with 8 inbred founder lines  
 - inbred lines are color-coded  
-- each subject represented by one chromosome pair  
+- each subject represented by one homologous chromosome pair  
 - over successive generations of outbreeding, subjects have smaller and smaller contiguous regions from a single inbred line  
 
 
@@ -176,22 +203,6 @@ class: center, middle, inverse, title-slide
 
 
 
-
----
-
-# Diversity Outbred Mice
-
-- Multiparental population arising from 8 inbred lines    
-
-  
-
-&lt;img src="figs/ccmice.png" width="300px" /&gt;
-
-???
-
-
-  - Each mouse is genetically unique  
-  - Complementary to Collaborative Cross  
 
 
 
@@ -439,13 +450,6 @@ class: center, middle, inverse, title-slide
 
     - contains one line of text to indicate date for CRAN packages
     
-
-
----
-
-# Future directions
-
-
 
 
 ---
