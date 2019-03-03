@@ -158,7 +158,14 @@ tibble(c1, c2, foo = as.factor(foo)) %>%
   geom_point(aes(x = c1, y = c2, color = foo)) + 
   xlim(c(0, 6)) + ylim(c(0, 6)) + xlab("trait1 position") + 
   ylab("trait2 position") + 
-  theme(legend.position = "none")
+  theme(legend.position = "none") + 
+  theme(axis.text.x = element_text(face="bold",  
+                           size=14),
+          axis.text.y = element_text(face="bold",
+                           size=14), 
+        axis.title = element_text(face = "bold", size = 16)
+        )
+
 
 ```
 
@@ -175,7 +182,7 @@ tibble(c1, c2, foo = as.factor(foo)) %>%
 
   
 
-```{r ccmice, echo = FALSE, out.width = "300px"}
+```{r ccmice, echo = FALSE, out.width = "400px"}
 include_graphics("figs/ccmice.png")
 ```
 
@@ -237,9 +244,6 @@ source("R/hs_fig.R")
 
 
 
-
-
-
 ---
 
 # Test procedure
@@ -263,11 +267,6 @@ source("R/hs_fig.R")
 - Test statistic: $$- \log \frac{\max (\text{likelihood under pleiotropy})}{\max (\text{likelihood for separate QTL})}$$    
 
 - Parametric bootstrap to get p-value    
-
-
-
-
-
 
 
 ---
@@ -327,8 +326,13 @@ tibble(c1, c2) %>%
   geom_point(aes(x = c1, y = c2)) + 
   xlim(c(0, 6)) + ylim(c(0, 6)) + xlab("trait1 position") + 
   ylab("trait2 position") + 
-  theme(legend.position = "none")
-
+  theme(legend.position = "none") + 
+  theme(axis.text.x = element_text(face="bold",  
+                           size=14),
+          axis.text.y = element_text(face="bold",
+                           size=14), 
+        axis.title = element_text(face = "bold", size = 16)
+        )
 ```
 
 ---
