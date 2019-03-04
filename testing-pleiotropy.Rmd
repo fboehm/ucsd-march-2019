@@ -297,8 +297,8 @@ include_graphics("figs/genomewide_lods_10-22.svg")
 
 # QTL scan results
 
-```{r chr8-lods, out.height = "500px"}
-include_graphics("figs/chr8-lod.svg")
+```{r chr8lod, out.height="500px"}
+include_graphics("figs/chr8-lods.svg")
 ```
 
 
@@ -321,10 +321,10 @@ include_graphics("figs/coefs.svg")
 
 # Profile LOD
 
-$$\text{profile LOD}_{\text{trait 1}}(\lambda) = max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$
+$$\text{profile LOD}_{\text{trait 1}}(\lambda_1) = max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$
 
 
-```{r, profile-trace, out.width=400}
+```{r profile-trace, out.width=400}
 c1 <- rep(1:5, each = 5)
 c2 <- rep(1:5, times = 5)
 c3 <- 2
@@ -594,7 +594,7 @@ include_graphics("figs/rpackages-cover.png")
 
 # References
 
-```{r, results = 'asis'}
+```{r bib, results = 'asis'}
 PrintBibliography(myBib, .opts = list(style = "markdown"), start = 1, end = 3)
 ```
 
@@ -602,7 +602,7 @@ PrintBibliography(myBib, .opts = list(style = "markdown"), start = 1, end = 3)
 
 # References
 
-```{r, results = 'asis'}
+```{r bib2, results = 'asis'}
 PrintBibliography(myBib, .opts = list(style = "markdown"), start = 4, end = 6)
 ```
 
