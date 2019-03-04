@@ -178,7 +178,6 @@ tibble(c1, c2, foo = as.factor(foo)) %>%
 
 # Diversity Outbred Mice
 
-- Multiparental population arising from 8 inbred lines    
 
   
 
@@ -188,8 +187,9 @@ include_graphics("figs/ccmice.png")
 
 ???
 
+- Multiparental population arising from 8 inbred lines    
 
-- Each mouse is genetically unique  
+- Each DO mouse is genetically unique  
 - 3 wild-derived lines
 - 3 subspecies: *M. m. domesticus*, *M. m. musculus*, and *M. m. castaneus*
 
