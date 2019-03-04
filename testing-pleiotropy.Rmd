@@ -179,8 +179,6 @@ tibble(c1, c2, foo = as.factor(foo)) %>%
 # Diversity Outbred Mice
 
 
-  
-
 ```{r ccmice, echo = FALSE, out.width = "400px"}
 include_graphics("figs/ccmice.png")
 ```
