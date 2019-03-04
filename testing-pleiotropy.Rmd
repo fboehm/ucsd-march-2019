@@ -295,6 +295,17 @@ include_graphics("figs/genomewide_lods_10-22.svg")
 
 ---
 
+# QTL scan results
+
+```{r chr8-lods, out.height = "500px"}
+include_graphics("figs/chr8-lod.svg")
+```
+
+
+
+
+---
+
 # Allele effects plots  
 
 
