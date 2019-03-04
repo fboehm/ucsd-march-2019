@@ -313,7 +313,7 @@ include_graphics("figs/coefs.svg")
 $$\text{profile LOD}_{\text{trait 1}}(\lambda) = max_{\lambda_2}LOD(\lambda_1, \lambda_2)$$
 
 
-```{r, profile-trace}
+```{r, profile-trace, out.width=400}
 c1 <- rep(1:5, each = 5)
 c2 <- rep(1:5, times = 5)
 c3 <- 2
